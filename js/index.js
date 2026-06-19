@@ -11,6 +11,31 @@ function hslToHex(h, s, l) {
     return "#" + f(0) + f(8) + f(4);
 }
 
+/**
+ * Manejo del modo oscuro
+ */
+
+  const btn   = document.getElementById('themeBtn');
+  const icon  = document.getElementById('themeIcon');
+  const label = document.getElementById('themeLabel');
+
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (saved === 'dark' || (!saved && prefersDark)) applyDark(true);
+
+  function toggleDark() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    applyDark(!isDark);
+  }
+
+  function applyDark(on) {
+    document.documentElement.setAttribute('data-theme', on ? 'dark' : 'light');
+    localStorage.setItem('theme', on ? 'dark' : 'light');
+    icon.textContent  = on ? '☀️' : '🌙';
+    label.textContent = on ? 'Modo claro' : 'Modo oscuro';
+    btn.classList.toggle('is-dark', on);
+  }
+
 
 function crearswatch(colorHSL, colorHEX, nombre) {
     const swatch = document.createElement("article");
@@ -73,4 +98,5 @@ selector.addEventListener("change", function() {
     renderColores(Number(selector.value));
 });
 
-renderColores(10);
+renderColores(6);
+
