@@ -19,8 +19,17 @@
 </button>
     </header>
     <main>
+        <div class="intro">
+            <div class="tag">✦ Herramienta de color</div>
+            <h2>Tu paleta,<br>sin límites</h2>
+            <p>Explora, genera y personaliza paletas de colores para tus proyectos de diseño. Nuestra herramienta interactiva te permite descubrir combinaciones perfectas y copiar códigos de color al instante.</p>
+                <div class="navegar">
+                <button class="btn__generar" onclick="document.getElementById('generador').scrollIntoView({ behavior: 'smooth' })">Generar paleta ↗</button>
+                <button class="btn__guardadas">Paletas guardadas</button>
+                </div>
+            </div>
         <section id="generador">
-            <h2>Generar paleta de colores</h2>
+            <h2 id="paleta">Generar paleta de colores</h2>
             <div class="controles">
             <button class="boton__primario" id="generar">Generar</button>
             <label class="controles__label" for="cantidad"></label>
