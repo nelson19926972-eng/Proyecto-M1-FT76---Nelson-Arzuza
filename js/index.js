@@ -56,7 +56,7 @@ function crearswatch(colorHSL, colorHEX, nombre) {
 
     const codigoColor = document.createElement("p");
     codigoColor.className = "swatch-codigo";
-    codigoColor.textContent = colorHEX + " . " + colorHSL;
+    codigoColor.textContent = colorHEX + " « » " + colorHSL;
 
     info.append(nombreColor, codigoColor);
 
@@ -98,5 +98,5 @@ selector.addEventListener("change", function() {
     renderColores(Number(selector.value));
 });
 
-renderColores(6);
+renderColores(cantidad = Number(selector.value));
 
