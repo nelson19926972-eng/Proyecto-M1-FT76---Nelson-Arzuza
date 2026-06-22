@@ -231,3 +231,66 @@ dibujarGuardadas();
 
 
 generarColores(Number(selector.value));
+
+function crearTarjeta(dataURL) {
+    const tarjeta = document.createElement("div");
+    tarjeta.className = "guardada-item";
+
+    const imagen = document.createElement("img");
+    imagen.src = dataURL;
+    imagen.alt = "Paleta de colores guardada";
+    imagen.className = "guardada-img";
+
+    // 👇 Al hacer click, abre el modal con esta imagen
+    imagen.addEventListener("click", function() {
+        abrirModal(dataURL);
+    });
+
+    const eliminarBtn = document.createElement("button");
+    eliminarBtn.className = "guardada-eliminar";
+    eliminarBtn.type = "button";
+    eliminarBtn.textContent = "Eliminar";
+    eliminarBtn.setAttribute("aria-label", "Eliminar paleta guardada");
+    eliminarBtn.addEventListener("click", function() {
+        paletasGuardadas = paletasGuardadas.filter(function(item) {
+            return item !== dataURL;
+        });
+        guardarEnStorage();
+        dibujarGuardadas();
+    });
+
+    tarjeta.append(imagen, eliminarBtn);
+    return tarjeta;
+}
+
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modal-img");
+const modalCerrar = document.getElementById("modal-cerrar");
+
+function abrirModal(dataURL) {
+    modalImg.src = dataURL;
+    modal.classList.add("abierto");
+    modal.setAttribute("aria-hidden", "false");
+}
+
+function cerrarModal() {
+    modal.classList.remove("abierto");
+    modal.setAttribute("aria-hidden", "true");
+    modalImg.src = "";
+}
+
+modalCerrar.addEventListener("click", cerrarModal);
+
+// Cerrar al hacer click en el fondo oscuro (fuera de la imagen)
+modal.addEventListener("click", function(e) {
+    if (e.target === modal) {
+        cerrarModal();
+    }
+});
+
+// Cerrar con la tecla Escape
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+        cerrarModal();
+    }
+});
