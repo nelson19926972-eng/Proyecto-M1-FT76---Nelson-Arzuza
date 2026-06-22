@@ -38,17 +38,12 @@ function hslToHex(h, s, l) {
 
 
 function crearswatch(colorHSL, colorHEX, nombre) {
-
-    
     const swatch = document.createElement("article");
     swatch.className = "swatch";
 
-    //bloque superior: aqui va el color
     const color = document.createElement("div");
     color.className = "swatch-color";
-    color.style.background = colorHSL;
-
-    //bloque inferior: aqui va el nombre del color + codigo
+    color.style.background = colorHSL; // el fondo SIEMPRE usa HSL, así el color no cambia
 
     const info = document.createElement("div");
     info.className = "swatch-info";
@@ -58,59 +53,59 @@ function crearswatch(colorHSL, colorHEX, nombre) {
     nombreColor.textContent = nombre;
 
     const codigoColor = document.createElement("p");
-    codigoColor.className = "swatch-codigo"; 
+    codigoColor.className = "swatch-codigo";
 
-    if(cd.value === ("hsl")){
-        codigoColor.textContent = colorHSL;
-
-    } else codigoColor.textContent = colorHEX;        
+    // Solo cambia el TEXTO del código, no el color
+    codigoColor.textContent = (cd.value === "hsl") ? colorHSL : colorHEX;
 
     info.append(nombreColor, codigoColor);
-
     swatch.append(color, info);
-
     return swatch;
-
 }
 
 function generarColor() {
     const h = Math.round(Math.random() * 360);
     const hsl = "hsl(" + h + ", 70%, 55%)";
     const hex = hslToHex(h, 70, 55);
-
     return { hsl, hex };
-    
 }
 
 const galeria = document.getElementById("galeria");
 
-function renderColores(cantidad) {
-    galeria.innerHTML = "";
+// 👇 Guardamos los colores actuales para no regenerarlos
+let coloresActuales = [];
 
+function generarColores(cantidad) {
+    coloresActuales = [];
     for (let i = 0; i < cantidad; i++) {
-        const color = generarColor();
-        const swatch = crearswatch(color.hsl, color.hex, "Color " + (i + 1));
-        galeria.appendChild(swatch);
+        coloresActuales.push(generarColor());
     }
-    const guardado = color;
+    dibujarColores();
 }
 
+// 👇 Solo dibuja usando los colores ya guardados
+function dibujarColores() {
+    galeria.innerHTML = "";
+    coloresActuales.forEach((color, i) => {
+        const swatch = crearswatch(color.hsl, color.hex, "Color " + (i + 1));
+        galeria.appendChild(swatch);
+    });
+}
 
 const boton = document.getElementById("generar");
 const selector = document.getElementById("cantidad");
 const cd = document.getElementById("codigo");
 
 boton.addEventListener("click", function() {
-renderColores(Number(selector.value));
+    generarColores(Number(selector.value)); // genera colores NUEVOS
 });
 
 selector.addEventListener("change", function() {
-    renderColores(Number(selector.value));
+    generarColores(Number(selector.value)); // cambia cantidad => nuevos colores
 });
 
-cd.addEventListener("change", function(){
-    renderColores(Number(selector.value));
-})
+cd.addEventListener("change", function() {
+    dibujarColores(); // 👈 solo cambia HSL/HEX, MISMOS colores
+});
 
-
-renderColores(cantidad = Number(selector.value));
+generarColores(Number(selector.value));
