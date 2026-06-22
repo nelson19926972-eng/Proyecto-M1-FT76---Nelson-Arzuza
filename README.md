@@ -7,7 +7,7 @@ Generador de paletas de colores interactivo. Proyecto del modulo 1 del bootcamp
 - CSS3 (Flexbox, Grid, variables y colores HSL - HEX)
 
 ## Como usar
-- Descargar la carpeta del proyecto  o ir al link de GitHub Pages
+- Descargar la carpeta del proyecto  o ir al link de GitHub Pages: https://nelson19926972-eng.github.io/Proyecto-M1-FT76---Nelson-Arzuza/
 - Abrir el archivo index.html
 - Seleciona entre modo oscuro o claro segun tu preferencia ![alt text](./assets/img/image-7.png)
 - Click en el boton generar paleta para ir a la seccion de generacion![alt text](./assets/img/image.png)
@@ -19,6 +19,32 @@ Generador de paletas de colores interactivo. Proyecto del modulo 1 del bootcamp
 - Guarda tus paletas favoritas con el boton guardar ![alt text](./assets/img/image-6.png)
 - Para abrir tus paletas guardadas solo haz click en la imagen![alt text](./assets/img/image-8.png)
 - Para eliminarlas, haz click en eliminar ![alt text](./assets/img/image-9.png)
+
+## Documentacion IA
+### Cambiar entre los cogidos HSL - HEX
+- Prompt
+![alt text](./assets/img/image-ia0.png)
+- Codigo:
+![alt text](./assets/img/image-ia1.png)
+
+### Bloqueo de colores
+- Prompt
+![alt text](./assets/img/image-ia2.png)
+- Codigo:
+![alt text](./assets/img/image-ia3.png)
+
+### Copiar codigo del color
+- Prompt
+![alt text](./assets/img/image-ia4.png)
+- Codigo:
+![alt text](./assets/img/image-ia5.png)
+
+### Guardar paleta de colores como png
+- Prompt
+![alt text](./assets/img/image-ia6.png)
+- Codigo:
+![alt text](./assets/img/image-ia7.png)
+![alt text](./assets/img/image-ia8.png)
 
 ## Link GitHub Pages
 - https://nelson19926972-eng.github.io/Proyecto-M1-FT76---Nelson-Arzuza/
