@@ -367,6 +367,33 @@ footer {
     
 }
 
+.controles__select:hover{
+    background-color: var(--color-acento-claro);
+    box-shadow: 0 2px 5px hsl(194, 92%, 49%);
+}
+
+.controles__select:focus{
+    outline: 3px solid var(--color-acento-claro);
+    outline-offset: 2px;}
+
+.controles__select:active{
+    background-color: var(--color-acento-claro);
+    box-shadow: 0 1px 3px hsl(194, 92%, 19%);
+    transform: translateY(1px);
+}
+
+.codigo__color {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+
+}
+
 .codigo__color {
     padding: 0.5rem;
     border: 1px solid var(--border);
@@ -377,6 +404,21 @@ footer {
     cursor: pointer;
     transition: border-color 0.2s ease;
     
+}
+
+.codigo__color:hover{
+    background-color: var(--color-acento-claro);
+    box-shadow: 0 2px 5px hsl(194, 92%, 49%);
+}
+
+.codigo__color:focus{
+    outline: 3px solid var(--color-acento-claro);
+    outline-offset: 2px;}
+
+.codigo__color:active{
+    background-color: var(--color-acento-claro);
+    box-shadow: 0 1px 3px hsl(194, 92%, 19%);
+    transform: translateY(1px);
 }
 
 /* El contenedor del color debe ser relative para posicionar el candado dentro */
