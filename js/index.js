@@ -143,5 +143,91 @@ cd.addEventListener("change", function() {
     dibujarColores(); // solo cambia HSL/HEX
 });
 
-generarColores(Number(selector.value));
 
+const guardarBtn = document.getElementById("guardar");
+const guardadas = document.getElementById("guardadas");
+
+// 👇 Cargamos las paletas guardadas (o un array vacío si no hay nada)
+let paletasGuardadas = JSON.parse(localStorage.getItem("paletasGuardadas")) || [];
+
+// Guarda el array actual en localStorage
+function guardarEnStorage() {
+    localStorage.setItem("paletasGuardadas", JSON.stringify(paletasGuardadas));
+}
+
+// Crea la tarjeta (imagen + botón eliminar) a partir de un data URL
+function crearTarjeta(dataURL) {
+    const tarjeta = document.createElement("div");
+    tarjeta.className = "guardada-item";
+
+    const imagen = document.createElement("img");
+    imagen.src = dataURL;
+    imagen.alt = "Paleta de colores guardada";
+    imagen.className = "guardada-img";
+
+    const eliminarBtn = document.createElement("button");
+    eliminarBtn.className = "guardada-eliminar";
+    eliminarBtn.type = "button";
+    eliminarBtn.textContent = "Eliminar";
+    eliminarBtn.setAttribute("aria-label", "Eliminar paleta guardada");
+    eliminarBtn.addEventListener("click", function() {
+        // 👇 quita del array, actualiza storage y redibuja
+        paletasGuardadas = paletasGuardadas.filter(function(item) {
+            return item !== dataURL;
+        });
+        guardarEnStorage();
+        dibujarGuardadas();
+    });
+
+    tarjeta.append(imagen, eliminarBtn);
+    return tarjeta;
+}
+
+// Dibuja todas las paletas guardadas desde el array
+function dibujarGuardadas() {
+    guardadas.innerHTML = "";
+    paletasGuardadas.forEach(function(dataURL) {
+        guardadas.appendChild(crearTarjeta(dataURL));
+    });
+}
+
+guardarBtn.addEventListener("click", function() {
+    const cantidad = coloresActuales.length;
+    if (cantidad === 0) return;
+
+    const anchoFranja = 200;
+    const altoFranja = 300;
+    const altoTexto = 50;
+
+    const canvas = document.createElement("canvas");
+    canvas.width = anchoFranja * cantidad;
+    canvas.height = altoFranja + altoTexto;
+    const ctx = canvas.getContext("2d");
+
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    coloresActuales.forEach(function(color, i) {
+        const x = i * anchoFranja;
+        ctx.fillStyle = color.hsl;
+        ctx.fillRect(x, 0, anchoFranja, altoFranja);
+
+        const codigoTexto = (cd.value === "hsl") ? color.hsl : color.hex;
+        ctx.fillStyle = "#111827";
+        ctx.font = "16px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(codigoTexto, x + anchoFranja / 2, altoFranja + 30);
+    });
+
+    // 👇 Guardamos el data URL en el array y en localStorage
+    const dataURL = canvas.toDataURL("image/png");
+    paletasGuardadas.push(dataURL);
+    guardarEnStorage();
+    dibujarGuardadas();
+});
+
+// 👇 Al cargar la página, mostramos lo que ya estaba guardado
+dibujarGuardadas();
+
+
+generarColores(Number(selector.value));

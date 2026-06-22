@@ -25,13 +25,16 @@
             <p>Explora, genera y personaliza paletas de colores para tus proyectos de diseño. Nuestra herramienta interactiva te permite descubrir combinaciones perfectas y copiar códigos de color al instante.</p>
                 <div class="navegar">
                 <button class="btn__generar" onclick="document.getElementById('generador').scrollIntoView({ behavior: 'smooth' })">Generar paleta ↗</button>
-                <button class="btn__guardadas">Paletas guardadas</button>
+                <button class="btn__guardadas" onclick="document.getElementById('guardadas').scrollIntoView({behavior:'smooth'})">Paletas guardadas</button>
                 </div>
             </div>
         <section id="generador">
             <h2 class="paleta">Generar paleta de colores</h2>
             <div class="controles">
             <button class="boton__primario" id="generar">Generar</button>
+            <button id="guardar" type="button">Guardar PNG</button>
+
+
            <select class="codigo__color" id="codigo">
                 <option   value="hsl" selected>HSL</option>
                 <option   value="hex">HEX</option>
@@ -48,7 +51,8 @@
             </section>
 
         </section>
-        
+        <!-- Galería donde se acumulan las paletas guardadas -->
+<div id="guardadas" class="guardadas"></div>
     </main> 
     <footer>
         <p>Proyecto M1 FT76 - &copy; 2026</p>
