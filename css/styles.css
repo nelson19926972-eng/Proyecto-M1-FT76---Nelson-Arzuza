@@ -364,9 +364,20 @@ footer {
     font-size: 1rem;
     cursor: pointer;
     transition: border-color 0.2s ease;
+    
 }
 
-.controles__select:hover {
-    border-color: var(--bg);
+.codigo__color {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    
 }
+
+
 

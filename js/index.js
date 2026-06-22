@@ -38,6 +38,8 @@ function hslToHex(h, s, l) {
 
 
 function crearswatch(colorHSL, colorHEX, nombre) {
+
+    
     const swatch = document.createElement("article");
     swatch.className = "swatch";
 
@@ -47,6 +49,7 @@ function crearswatch(colorHSL, colorHEX, nombre) {
     color.style.background = colorHSL;
 
     //bloque inferior: aqui va el nombre del color + codigo
+
     const info = document.createElement("div");
     info.className = "swatch-info";
 
@@ -55,8 +58,12 @@ function crearswatch(colorHSL, colorHEX, nombre) {
     nombreColor.textContent = nombre;
 
     const codigoColor = document.createElement("p");
-    codigoColor.className = "swatch-codigo";
-    codigoColor.textContent = colorHEX + " « » " + colorHSL;
+    codigoColor.className = "swatch-codigo"; 
+
+    if(cd.value === ("hsl")){
+        codigoColor.textContent = colorHSL;
+
+    } else codigoColor.textContent = colorHEX;        
 
     info.append(nombreColor, codigoColor);
 
@@ -85,10 +92,13 @@ function renderColores(cantidad) {
         const swatch = crearswatch(color.hsl, color.hex, "Color " + (i + 1));
         galeria.appendChild(swatch);
     }
+    const guardado = color;
 }
+
 
 const boton = document.getElementById("generar");
 const selector = document.getElementById("cantidad");
+const cd = document.getElementById("codigo");
 
 boton.addEventListener("click", function() {
 renderColores(Number(selector.value));
@@ -98,5 +108,9 @@ selector.addEventListener("change", function() {
     renderColores(Number(selector.value));
 });
 
-renderColores(cantidad = Number(selector.value));
+cd.addEventListener("change", function(){
+    renderColores(Number(selector.value));
+})
 
+
+renderColores(cantidad = Number(selector.value));
