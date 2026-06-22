@@ -43,17 +43,17 @@ function crearswatch(color, i) {
 
     const colorDiv = document.createElement("div");
     colorDiv.className = "swatch-color";
-    colorDiv.style.background = color.hsl; // el fondo SIEMPRE usa HSL
+    colorDiv.style.background = color.hsl;
 
-    // 👇 Botón de candado
+    // Botón de candado
     const lockBtn = document.createElement("button");
-    lockBtn.className = "swatch-lock";
+    lockBtn.className = color.locked ? "swatch-lock bloqueado" : "swatch-lock";
     lockBtn.type = "button";
     lockBtn.textContent = color.locked ? "🔒" : "🔓";
     lockBtn.setAttribute("aria-label", color.locked ? "Desbloquear color" : "Bloquear color");
     lockBtn.addEventListener("click", function() {
-        color.locked = !color.locked;     // alterna el estado bloqueado
-        dibujarColores();                  // repinta para actualizar el candado
+        color.locked = !color.locked;
+        dibujarColores();
     });
     colorDiv.appendChild(lockBtn);
 
@@ -64,11 +64,34 @@ function crearswatch(color, i) {
     nombreColor.className = "swatch-nombre";
     nombreColor.textContent = "Color " + (i + 1);
 
+    // 👇 Fila con el código + botón de copiar
+    const codigoFila = document.createElement("div");
+    codigoFila.className = "swatch-codigo-fila";
+
     const codigoColor = document.createElement("p");
     codigoColor.className = "swatch-codigo";
-    codigoColor.textContent = (cd.value === "hsl") ? color.hsl : color.hex;
+    const codigoTexto = (cd.value === "hsl") ? color.hsl : color.hex;
+    codigoColor.textContent = codigoTexto;
 
-    info.append(nombreColor, codigoColor);
+    const copiarBtn = document.createElement("button");
+    copiarBtn.className = "swatch-copiar";
+    copiarBtn.type = "button";
+    copiarBtn.textContent = "Copiar";
+    copiarBtn.setAttribute("aria-label", "Copiar código del color");
+    copiarBtn.addEventListener("click", function() {
+        navigator.clipboard.writeText(codigoTexto).then(function() {
+            // Feedback visual temporal
+            copiarBtn.textContent = "¡Copiado!";
+            copiarBtn.classList.add("copiado");
+            setTimeout(function() {
+                copiarBtn.textContent = "Copiar";
+                copiarBtn.classList.remove("copiado");
+            }, 1200);
+        });
+    });
+
+    codigoFila.append(codigoColor, copiarBtn);
+    info.append(nombreColor, codigoFila);
     swatch.append(colorDiv, info);
     return swatch;
 }
@@ -121,3 +144,4 @@ cd.addEventListener("change", function() {
 });
 
 generarColores(Number(selector.value));
+

@@ -423,5 +423,33 @@ footer {
     transform: scale(0.95);
 }
 
+.swatch-codigo-fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.swatch-copiar {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #f9fafb;
+    color: #374151;
+    font-size: 12px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.swatch-copiar:hover {
+    background: #e5e7eb;
+}
+
+.swatch-copiar.copiado {
+    background: #16a34a;   /* verde de confirmación */
+    color: #ffffff;
+    border-color: #16a34a;
+}
+
 
 
