@@ -37,29 +37,39 @@ function hslToHex(h, s, l) {
   }
 
 
-function crearswatch(colorHSL, colorHEX, nombre) {
+function crearswatch(color, i) {
     const swatch = document.createElement("article");
     swatch.className = "swatch";
 
-    const color = document.createElement("div");
-    color.className = "swatch-color";
-    color.style.background = colorHSL; // el fondo SIEMPRE usa HSL, así el color no cambia
+    const colorDiv = document.createElement("div");
+    colorDiv.className = "swatch-color";
+    colorDiv.style.background = color.hsl; // el fondo SIEMPRE usa HSL
+
+    // 👇 Botón de candado
+    const lockBtn = document.createElement("button");
+    lockBtn.className = "swatch-lock";
+    lockBtn.type = "button";
+    lockBtn.textContent = color.locked ? "🔒" : "🔓";
+    lockBtn.setAttribute("aria-label", color.locked ? "Desbloquear color" : "Bloquear color");
+    lockBtn.addEventListener("click", function() {
+        color.locked = !color.locked;     // alterna el estado bloqueado
+        dibujarColores();                  // repinta para actualizar el candado
+    });
+    colorDiv.appendChild(lockBtn);
 
     const info = document.createElement("div");
     info.className = "swatch-info";
 
     const nombreColor = document.createElement("p");
     nombreColor.className = "swatch-nombre";
-    nombreColor.textContent = nombre;
+    nombreColor.textContent = "Color " + (i + 1);
 
     const codigoColor = document.createElement("p");
     codigoColor.className = "swatch-codigo";
-
-    // Solo cambia el TEXTO del código, no el color
-    codigoColor.textContent = (cd.value === "hsl") ? colorHSL : colorHEX;
+    codigoColor.textContent = (cd.value === "hsl") ? color.hsl : color.hex;
 
     info.append(nombreColor, codigoColor);
-    swatch.append(color, info);
+    swatch.append(colorDiv, info);
     return swatch;
 }
 
@@ -67,28 +77,30 @@ function generarColor() {
     const h = Math.round(Math.random() * 360);
     const hsl = "hsl(" + h + ", 70%, 55%)";
     const hex = hslToHex(h, 70, 55);
-    return { hsl, hex };
+    return { hsl, hex, locked: false }; // 👈 nace desbloqueado
 }
 
 const galeria = document.getElementById("galeria");
-
-// 👇 Guardamos los colores actuales para no regenerarlos
 let coloresActuales = [];
 
 function generarColores(cantidad) {
-    coloresActuales = [];
+    const nuevos = [];
     for (let i = 0; i < cantidad; i++) {
-        coloresActuales.push(generarColor());
+        // 👇 si el color de esa posición está bloqueado, lo conservamos
+        if (coloresActuales[i] && coloresActuales[i].locked) {
+            nuevos.push(coloresActuales[i]);
+        } else {
+            nuevos.push(generarColor());
+        }
     }
+    coloresActuales = nuevos;
     dibujarColores();
 }
 
-// 👇 Solo dibuja usando los colores ya guardados
 function dibujarColores() {
     galeria.innerHTML = "";
     coloresActuales.forEach((color, i) => {
-        const swatch = crearswatch(color.hsl, color.hex, "Color " + (i + 1));
-        galeria.appendChild(swatch);
+        galeria.appendChild(crearswatch(color, i));
     });
 }
 
@@ -97,15 +109,15 @@ const selector = document.getElementById("cantidad");
 const cd = document.getElementById("codigo");
 
 boton.addEventListener("click", function() {
-    generarColores(Number(selector.value)); // genera colores NUEVOS
+    generarColores(Number(selector.value)); // bloqueados se quedan, el resto cambia
 });
 
 selector.addEventListener("change", function() {
-    generarColores(Number(selector.value)); // cambia cantidad => nuevos colores
+    generarColores(Number(selector.value));
 });
 
 cd.addEventListener("change", function() {
-    dibujarColores(); // 👈 solo cambia HSL/HEX, MISMOS colores
+    dibujarColores(); // solo cambia HSL/HEX
 });
 
 generarColores(Number(selector.value));

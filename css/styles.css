@@ -379,5 +379,49 @@ footer {
     
 }
 
+/* El contenedor del color debe ser relative para posicionar el candado dentro */
+.swatch-color {
+    position: relative;
+}
+
+/* Botón de candado en la esquina superior derecha */
+.swatch-lock {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0;                       /* oculto por defecto */
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+/* Aparece al pasar el mouse por el swatch */
+.swatch-color:hover .swatch-lock {
+    opacity: 1;
+}
+
+/* Si está bloqueado, se mantiene siempre visible */
+.swatch-lock.bloqueado {
+    opacity: 1;
+    background: rgba(255, 255, 255, 1);
+}
+
+.swatch-lock:hover {
+    transform: scale(1.1);
+}
+
+.swatch-lock:active {
+    transform: scale(0.95);
+}
+
 
 
