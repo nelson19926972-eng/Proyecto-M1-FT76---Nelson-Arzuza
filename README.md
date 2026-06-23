@@ -6,8 +6,11 @@ Generador de paletas de colores interactivo. Proyecto del modulo 1 del bootcamp
 - HTML semantico
 - CSS3 (Flexbox, Grid, variables y colores HSL - HEX)
 
+## Link GitHub Pages
+- https://nelson19926972-eng.github.io/Proyecto-M1-FT76---Nelson-Arzuza/
+
 ## Como usar
-- Descargar la carpeta del proyecto  o ir al link de GitHub Pages: https://nelson19926972-eng.github.io/Proyecto-M1-FT76---Nelson-Arzuza/
+- Descargar la carpeta del proyecto  o ir al link de GitHub Pages
 - Abrir el archivo index.html
 - Seleciona entre modo oscuro o claro segun tu preferencia ![alt text](./assets/img/image-7.png)
 - Click en el boton generar paleta para ir a la seccion de generacion![alt text](./assets/img/image.png)
@@ -46,7 +49,6 @@ Generador de paletas de colores interactivo. Proyecto del modulo 1 del bootcamp
 ![alt text](./assets/img/image-ia7.png)
 ![alt text](./assets/img/image-ia8.png)
 
-## Link GitHub Pages
-- https://nelson19926972-eng.github.io/Proyecto-M1-FT76---Nelson-Arzuza/
+
 
 
