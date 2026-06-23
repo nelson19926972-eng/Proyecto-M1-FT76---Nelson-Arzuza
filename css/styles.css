@@ -215,6 +215,7 @@ header {
 
 
 .dark-mode-btn {
+  white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -744,4 +745,14 @@ footer {
 }
 .controles__select {
     order: 4;
+}
+
+@media (min-width: 768px) {
+    header {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+    header .dark-mode-btn {
+        margin-left: auto;
+    }
 }
