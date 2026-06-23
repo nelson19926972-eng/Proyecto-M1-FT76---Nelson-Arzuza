@@ -7,7 +7,7 @@ Generador de paletas de colores interactivo. Proyecto del modulo 1 del bootcamp
 - CSS3 (Flexbox, Grid, variables y colores HSL - HEX)
 
 ## Link GitHub Pages
-- https://nelson19926972-eng.github.io/Proyecto-M1-FT76---Nelson-Arzuza/
+- https://nelson19926972-eng.github.io/Proyecto_M1_Nelson_Arzuza/
 
 ## Como usar
 - Descargar la carpeta del proyecto  o ir al link de GitHub Pages
