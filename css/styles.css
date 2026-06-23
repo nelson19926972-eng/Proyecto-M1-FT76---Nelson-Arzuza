@@ -99,6 +99,7 @@ header {
     margin-bottom: 1rem; 
     font-family: "nunito", sans-serif;
 }
+
 .intro p { 
     font-size: 1.25rem; 
     color: var(--text-muted); 
@@ -166,6 +167,19 @@ header {
 }
 
 #generador h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    font-family: "nunito", sans-serif;
+    text-align: center;
+    animation: glow 2s ease-in-out infinite;
+     animation-delay: 0.2s;
+    
+}
+
+#paletas__guardadas h2 {
     font-size: 2.5rem;
     font-weight: 500;
     color: var(--text-muted);
