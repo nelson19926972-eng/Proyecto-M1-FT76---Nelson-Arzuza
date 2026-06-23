@@ -121,11 +121,16 @@ header {
     margin-bottom: 2.5rem;
 }
 .btn__generar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     background: var(--color-acento);
     color: var(--bg);
     border: none;
     border-radius: var(--border-radius-md);
-    padding: 10px 22px; font-size: 14px;
+    padding: 0 22px;
+    font-size: 15px;
     font-weight: 500; cursor: pointer;
     transition: opacity .15s;
 }
@@ -145,11 +150,16 @@ header {
 }
 
 .btn__guardadas {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     background: var(--color-acento);
     color: var(--bg);
     border: none;
     border-radius: var(--border-radius-md);
-    padding: 10px 22px; font-size: 14px;
+    padding: 0 22px;
+    font-size: 15px;
     font-weight: 500; cursor: pointer;
     transition: opacity .15s;
  }
@@ -335,9 +345,10 @@ footer {
 }
 
 .controles__label {
-    font-size: 1rem;
+    font-size: 15px;
     display: flex;
     align-items: center;
+    min-height: 44px;
     color: var(--text-muted);
 
 }
@@ -367,12 +378,13 @@ footer {
     transform: translateY(1px);
 }
 .controles__select {
-    padding: 0.5rem;
+    min-height: 44px;
+    padding: 0 0.75rem;
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
+    border-radius: 8px;
     background-color: var(--bg);
     color: var(--text);
-    font-size: 1rem;
+    font-size: 15px;
     cursor: pointer;
     transition: border-color 0.2s ease;
 
@@ -394,12 +406,13 @@ footer {
 }
 
 .codigo__color {
-    padding: 0.5rem;
+    min-height: 44px;
+    padding: 0 0.75rem;
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
+    border-radius: 8px;
     background-color: var(--bg);
     color: var(--text);
-    font-size: 1rem;
+    font-size: 15px;
     cursor: pointer;
     transition: border-color 0.2s ease;
 
@@ -535,15 +548,17 @@ footer {
 }
 
 #guardar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     color: var(--bg);
     background-color: var(--color-acento);
     border: none;
-    padding: 12px 28px;
+    padding: 0 24px;
     border-radius: 8px;
     font-size: 15px;
     font-weight: 500;
-    cursor: pointer;
-    transition: opacity .15s;
 
 }
 #guardar:hover {
@@ -712,4 +727,21 @@ footer {
     .galeria {
         grid-template-columns: 1fr;
     }
+}
+
+.boton__primario,
+#guardar {
+    order: 1;
+}
+
+/* Selects (código color / cantidad de colores) a la derecha */
+.codigo__color {
+    order: 2;
+    margin-left: auto;
+}
+.controles__label {
+    order: 3;
+}
+.controles__select {
+    order: 4;
 }
